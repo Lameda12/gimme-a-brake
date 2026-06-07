@@ -41,17 +41,31 @@ Two pieces, one ritual:
 
 ### macOS (available now)
 
-**1. Get the app**
+**1. Download**
 
-Download `SmokeBreak.app` from [Releases](../../releases), or build it yourself:
+Grab `SmokeBreak-vX.Y.Z.zip` from [**Releases**](../../releases/latest) — it's
+a Developer-ID-signed, hardened-runtime, **notarized and stapled** build.
+Unzip it, drag `SmokeBreak.app` to `/Applications`. Opens cleanly on first
+launch — no Gatekeeper warning, no right-click-to-open dance.
+
+**2. Launch it once**
+
+```bash
+open /Applications/SmokeBreak.app
+```
+
+It lives quietly in your menu bar (`🚬`/`⏸`) and registers itself to launch
+at login; toggle that from its menu anytime.
+
+<details>
+<summary>Building from source instead</summary>
 
 ```bash
 cd SmokeBreakApp
 SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" ./build_app.sh
 ```
 
-That produces a Developer-ID-signed, hardened-runtime build. To also notarize
-and staple it (so Gatekeeper opens it with zero warnings), set `NOTARY_PROFILE`
+To also notarize and staple (zero Gatekeeper warnings), set `NOTARY_PROFILE`
 to a keychain profile created via `xcrun notarytool store-credentials`:
 
 ```bash
@@ -60,17 +74,9 @@ NOTARY_PROFILE="your-keychain-profile" \
 ./build_app.sh
 ```
 
-(Omit `SIGN_IDENTITY` entirely to ad-hoc sign for local use only.)
+Omit `SIGN_IDENTITY` to ad-hoc sign for local use only.
 
-**2. Launch it once**
-
-```bash
-open SmokeBreakApp/SmokeBreak.app
-```
-
-The released build is **notarized and stapled** — it opens cleanly with no
-Gatekeeper warning. It lives quietly in your menu bar (`🚬`/`⏸`) and
-registers itself to launch at login; toggle that from its menu anytime.
+</details>
 
 **3. Wire the hook into your project**
 
