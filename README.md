@@ -4,6 +4,9 @@
 
 # gimme-a-brake
 
+[![Verified working](https://img.shields.io/badge/macOS%20app-verified%20working-brightgreen?logo=apple)](../../releases/latest)
+[![Notarized](https://img.shields.io/badge/Apple-notarized%20%26%20stapled-blue?logo=apple)](../../releases/latest)
+
 **Sopranos-style context reset ritual for AI coding agents.**
 Drop it into any project. When your agent's context runs long — or you tell it to take five — it stops, smokes, and comes back clean.
 
@@ -47,6 +50,11 @@ Grab `SmokeBreak-vX.Y.Z.zip` from [**Releases**](../../releases/latest) — it's
 a Developer-ID-signed, hardened-runtime, **notarized and stapled** build.
 Unzip it, drag `SmokeBreak.app` to `/Applications`. Opens cleanly on first
 launch — no Gatekeeper warning, no right-click-to-open dance.
+
+> ✅ **Verified working** — downloaded fresh from this repo's Releases,
+> Gatekeeper-checked (`spctl: accepted / Notarized Developer ID`), and
+> launched clean with the overlay firing on a live trigger. No quarantine
+> prompt, no crash.
 
 **2. Launch it once**
 
