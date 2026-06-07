@@ -50,7 +50,17 @@ cd SmokeBreakApp
 SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" ./build_app.sh
 ```
 
-(Omit `SIGN_IDENTITY` to ad-hoc sign for local use only.)
+That produces a Developer-ID-signed, hardened-runtime build. To also notarize
+and staple it (so Gatekeeper opens it with zero warnings), set `NOTARY_PROFILE`
+to a keychain profile created via `xcrun notarytool store-credentials`:
+
+```bash
+SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" \
+NOTARY_PROFILE="your-keychain-profile" \
+./build_app.sh
+```
+
+(Omit `SIGN_IDENTITY` entirely to ad-hoc sign for local use only.)
 
 **2. Launch it once**
 
@@ -58,11 +68,9 @@ SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" ./build_app.sh
 open SmokeBreakApp/SmokeBreak.app
 ```
 
-> The build is Developer-ID signed but not yet notarized — macOS Gatekeeper
-> will warn on first launch. Right-click the app → **Open** → confirm, and
-> you're set. (Notarization is on the roadmap — see below.)
-
-It lives quietly in your menu bar (`🚬`/`⏸`). It registers itself to launch at login; toggle that from its menu anytime.
+The released build is **notarized and stapled** — it opens cleanly with no
+Gatekeeper warning. It lives quietly in your menu bar (`🚬`/`⏸`) and
+registers itself to launch at login; toggle that from its menu anytime.
 
 **3. Wire the hook into your project**
 
@@ -126,7 +134,7 @@ Each tier shuffles through its own pool of clips, remembering the last one playe
 
 ## Roadmap
 
-- [ ] Notarize the macOS build (Developer ID cert is in place; notarytool credentials pending)
+- [x] Notarize the macOS build — Developer-ID signed, hardened runtime, notarized + stapled
 - [ ] Linux tray companion
 - [ ] Windows tray companion
 - [ ] Configurable quote/sound packs
