@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 smoke_break.py --duration 3 --reason agent_stop"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "context",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 smoke_break.py --duration 2 --reason context_warning --no-wait"
+          }
+        ]
+      }
+    ]
+  }
+}
